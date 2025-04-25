@@ -1,0 +1,820 @@
+
+> frontend@0.0.0 test /Users/huynguyen/Documents/_repos/media-studio-app
+> vitest run
+
+
+ RUN  v3.1.2 /Users/huynguyen/Documents/_repos/media-studio-app
+
+ ❯ src/stores/__tests__/authStore.test.ts (7 tests | 1 failed) 31ms
+   ✓ authStore > should initialize with default values 13ms
+   × authStore > should update state on successful login 10ms
+     → expected "spy" to be called with arguments: [ 'test@example.com', 'password' ][90m
+
+Received: 
+
+[1m  1st spy call:
+
+[22m[2m  [[22m
+[32m-   "test@example.com",[90m
+[32m-   "password",[90m
+[31m+   {[90m
+[31m+     "email": "test@example.com",[90m
+[31m+     "password": "password",[90m
+[31m+   },[90m
+[2m  ][22m
+[39m[90m
+
+Number of calls: [1m1[22m
+[39m
+   ✓ authStore > should handle login errors 1ms
+   ✓ authStore > should update state on successful registration 1ms
+   ✓ authStore > should clear state on logout 1ms
+   ✓ authStore > should refresh access token successfully 1ms
+   ✓ authStore > should handle password reset request 1ms
+ ✓ src/contexts/__tests__/AuthContext.test.tsx (4 tests) 30ms
+ ✓ src/services/__tests__/projectService.test.ts (6 tests) 6ms
+ ✓ src/services/__tests__/authService.test.ts (8 tests) 10ms
+ ✓ src/services/__tests__/mediaService.test.ts (8 tests) 40ms
+stderr | src/pages/auth/__tests__/signup-page.test.tsx > SignupPage > renders signup page with form
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/pages/auth/__tests__/signup-page.test.tsx (4 tests) 543ms
+stderr | src/pages/__tests__/ProtectedRoute.test.tsx > ProtectedRoute > should render children when user is authenticated
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/contexts/__tests__/ThemeContext.test.tsx (3 tests) 18ms
+ ✓ src/pages/__tests__/ProtectedRoute.test.tsx (3 tests) 25ms
+stderr | src/pages/auth/__tests__/login-page.test.tsx > LoginPage > renders login page with form
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/components/custom/layout/__tests__/Modal.test.tsx > Modal > renders children when isOpen is true
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/custom/layout/__tests__/Modal.test.tsx (6 tests) 40ms
+ ✓ src/pages/auth/__tests__/login-page.test.tsx (4 tests) 277ms
+stderr | src/components/custom/layout/__tests__/Toast.test.tsx > Toast > renders toast message
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/custom/layout/__tests__/Toast.test.tsx (5 tests) 31ms
+stderr | src/components/custom/layout/__tests__/Container.test.tsx > Container > renders children correctly
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/components/custom/layout/__tests__/Page.test.tsx > Page > renders children correctly
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/custom/layout/__tests__/Container.test.tsx (4 tests) 23ms
+ ✓ src/components/custom/layout/__tests__/Page.test.tsx (4 tests) 34ms
+ ❯ src/components/custom/auth/__tests__/SignupForm.test.tsx (7 tests | 1 failed) 1348ms
+   ✓ SignupForm > renders the signup form correctly 42ms
+   ✓ SignupForm > shows validation errors for empty fields 32ms
+   × SignupForm > shows validation error for invalid email 1019ms
+     → Unable to find an element by: [data-testid="email-error"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<form[39m
+      [33mclass[39m=[32m"space-y-4"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"grid grid-cols-2 gap-4"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"firstName"[39m
+          [36m>[39m
+            [0mFirst Name[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+            [33mid[39m=[32m"firstName"[39m
+            [33mname[39m=[32m"firstName"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"lastName"[39m
+          [36m>[39m
+            [0mLast Name[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+            [33mid[39m=[32m"lastName"[39m
+            [33mname[39m=[32m"lastName"[39m
+          [36m/>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"space-y-2"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+          [33mfor[39m=[32m"email"[39m
+        [36m>[39m
+          [0mEmail[0m
+        [36m</label>[39m
+        [36m<input[39m
+          [33maria-invalid[39m=[32m"false"[39m
+          [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+          [33mid[39m=[32m"email"[39m
+          [33mname[39m=[32m"email"[39m
+          [33mtype[39m=[32m"email"[39m
+        [36m/>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"space-y-2"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+          [33mfor[39m=[32m"password"[39m
+        [36m>[39m
+          [0mPassword[0m
+        [36m</label>[39m
+        [36m<input[39m
+          [33maria-invalid[39m=[32m"false"[39m
+          [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+          [33mid[39m=[32m"password"[39m
+          [33mname[39m=[32m"password"[39m
+          [33mtype[39m=[32m"password"[39m
+        [36m/>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"space-y-2"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+          [33mfor[39m=[32m"confirmPassword"[39m
+        [36m>[39m
+          [0mConfirm Password[0m
+        [36m</label>[39m
+        [36m<input[39m
+          [33maria-invalid[39m=[32m"false"[39m
+          [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+          [33mid[39m=[32m"confirmPassword"[39m
+          [33mname[39m=[32m"confirmPassword"[39m
+          [33mtype[39m=[32m"password"[39m
+        [36m/>[39m
+      [36m</div>[39m
+      [36m<button[39m
+        [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"[39m
+        [33mdata-testid[39m=[32m"signup-button"[39m
+        [33mtype[39m=[32m"submit"[39m
+      [36m>[39m
+        [0mSign up[0m
+      [36m</button>[39m
+    [36m</form>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<form[39m
+        [33mclass[39m=[32m"space-y-4"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"grid grid-cols-2 gap-4"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"space-y-2"[39m
+          [36m>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+              [33mfor[39m=[32m"firstName"[39m
+            [36m>[39m
+              [0mFirst Name[0m
+            [36m</label>[39m
+            [36m<input[39m
+              [33maria-invalid[39m=[32m"false"[39m
+              [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+              [33mid[39m=[32m"firstName"[39m
+              [33mname[39m=[32m"firstName"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"space-y-2"[39m
+          [36m>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+              [33mfor[39m=[32m"lastName"[39m
+            [36m>[39m
+              [0mLast Name[0m
+            [36m</label>[39m
+            [36m<input[39m
+              [33maria-invalid[39m=[32m"false"[39m
+              [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+              [33mid[39m=[32m"lastName"[39m
+              [33mname[39m=[32m"lastName"[39m
+            [36m/>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"email"[39m
+          [36m>[39m
+            [0mEmail[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+            [33mid[39m=[32m"email"[39m
+            [33mname[39m=[32m"email"[39m
+            [33mtype[39m=[32m"email"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"password"[39m
+          [36m>[39m
+            [0mPassword[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+            [33mid[39m=[32m"password"[39m
+            [33mname[39m=[32m"password"[39m
+            [33mtype[39m=[32m"password"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"confirmPassword"[39m
+          [36m>[39m
+            [0mConfirm Password[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+            [33mid[39m=[32m"confirmPassword"[39m
+            [33mname[39m=[32m"confirmPassword"[39m
+            [33mtype[39m=[32m"password"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"[39m
+          [33mdata-testid[39m=[32m"signup-button"[39m
+          [33mtype[39m=[32m"submit"[39m
+        [36m>[39m
+          [0mSign up[0m
+        [36m</button>[39m
+      [36m</form>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+   ✓ SignupForm > shows validation error for password that doesn't meet requirements 15ms
+   ✓ SignupForm > shows validation error when passwords don't match 13ms
+   ✓ SignupForm > submits the form with valid data 57ms
+   ✓ SignupForm > displays loading state during submission 171ms
+stderr | src/components/custom/layout/__tests__/Layout.test.tsx > Layout > renders children correctly
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/custom/layout/__tests__/Layout.test.tsx (3 tests) 21ms
+stderr | src/pages/auth/__tests__/LoginPage.test.tsx > LoginPage > renders the login page
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/pages/auth/__tests__/LoginPage.test.tsx (1 test) 23ms
+ ❯ src/components/custom/auth/__tests__/LoginForm.test.tsx (6 tests | 2 failed) 1294ms
+   ✓ LoginForm > renders login form with all fields 28ms
+   ✓ LoginForm > shows validation error for empty email 17ms
+   × LoginForm > shows validation error for invalid email format 1048ms
+     → Unable to find an element by: [data-testid="email-error"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<form[39m
+      [33mclass[39m=[32m"space-y-6"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"space-y-2"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+          [33mfor[39m=[32m"email"[39m
+        [36m>[39m
+          [0mEmail[0m
+        [36m</label>[39m
+        [36m<input[39m
+          [33maria-invalid[39m=[32m"false"[39m
+          [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+          [33mid[39m=[32m"email"[39m
+          [33mname[39m=[32m"email"[39m
+          [33mtype[39m=[32m"email"[39m
+        [36m/>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"space-y-2"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+          [33mfor[39m=[32m"password"[39m
+        [36m>[39m
+          [0mPassword[0m
+        [36m</label>[39m
+        [36m<input[39m
+          [33maria-invalid[39m=[32m"false"[39m
+          [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+          [33mid[39m=[32m"password"[39m
+          [33mname[39m=[32m"password"[39m
+          [33mtype[39m=[32m"password"[39m
+        [36m/>[39m
+      [36m</div>[39m
+      [36m<button[39m
+        [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"[39m
+        [33mdata-testid[39m=[32m"submit-button"[39m
+        [33mtype[39m=[32m"submit"[39m
+      [36m>[39m
+        [0mSign in[0m
+      [36m</button>[39m
+    [36m</form>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<form[39m
+        [33mclass[39m=[32m"space-y-6"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"email"[39m
+          [36m>[39m
+            [0mEmail[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+            [33mid[39m=[32m"email"[39m
+            [33mname[39m=[32m"email"[39m
+            [33mtype[39m=[32m"email"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"password"[39m
+          [36m>[39m
+            [0mPassword[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+            [33mid[39m=[32m"password"[39m
+            [33mname[39m=[32m"password"[39m
+            [33mtype[39m=[32m"password"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"[39m
+          [33mdata-testid[39m=[32m"submit-button"[39m
+          [33mtype[39m=[32m"submit"[39m
+        [36m>[39m
+          [0mSign in[0m
+        [36m</button>[39m
+      [36m</form>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+   ✓ LoginForm > shows validation error for empty password 37ms
+   ✓ LoginForm > submits form with valid data 107ms
+   × LoginForm > shows loading state during form submission 55ms
+     → [2mexpect([22m[31melement[39m[2m).toHaveTextContent()[22m
+
+Expected element to have text content:
+[32m  /signing in/i[39m
+Received:
+[31m  Sign in[39m
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/stores/__tests__/authStore.test.ts > authStore > should update state on successful login
+AssertionError: expected "spy" to be called with arguments: [ 'test@example.com', 'password' ][90m
+
+Received: 
+
+[1m  1st spy call:
+
+[22m[2m  [[22m
+[32m-   "test@example.com",[90m
+[32m-   "password",[90m
+[31m+   {[90m
+[31m+     "email": "test@example.com",[90m
+[31m+     "password": "password",[90m
+[31m+   },[90m
+[2m  ][22m
+[39m[90m
+
+Number of calls: [1m1[22m
+[39m
+ ❯ src/stores/__tests__/authStore.test.ts:71:31
+     69|     expect(result.current.isLoading).toBe(false);
+     70|     expect(result.current.error).toBeNull();
+     71|     expect(authService.login).toHaveBeenCalledWith(
+       |                               ^
+     72|       "test@example.com",
+     73|       "password"
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/components/custom/auth/__tests__/LoginForm.test.tsx > LoginForm > shows validation error for invalid email format
+TestingLibraryElementError: Unable to find an element by: [data-testid="email-error"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<form[39m
+      [33mclass[39m=[32m"space-y-6"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"space-y-2"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+          [33mfor[39m=[32m"email"[39m
+        [36m>[39m
+          [0mEmail[0m
+        [36m</label>[39m
+        [36m<input[39m
+          [33maria-invalid[39m=[32m"false"[39m
+          [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+          [33mid[39m=[32m"email"[39m
+          [33mname[39m=[32m"email"[39m
+          [33mtype[39m=[32m"email"[39m
+        [36m/>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"space-y-2"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+          [33mfor[39m=[32m"password"[39m
+        [36m>[39m
+          [0mPassword[0m
+        [36m</label>[39m
+        [36m<input[39m
+          [33maria-invalid[39m=[32m"false"[39m
+          [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+          [33mid[39m=[32m"password"[39m
+          [33mname[39m=[32m"password"[39m
+          [33mtype[39m=[32m"password"[39m
+        [36m/>[39m
+      [36m</div>[39m
+      [36m<button[39m
+        [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"[39m
+        [33mdata-testid[39m=[32m"submit-button"[39m
+        [33mtype[39m=[32m"submit"[39m
+      [36m>[39m
+        [0mSign in[0m
+      [36m</button>[39m
+    [36m</form>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<form[39m
+        [33mclass[39m=[32m"space-y-6"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"email"[39m
+          [36m>[39m
+            [0mEmail[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+            [33mid[39m=[32m"email"[39m
+            [33mname[39m=[32m"email"[39m
+            [33mtype[39m=[32m"email"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"password"[39m
+          [36m>[39m
+            [0mPassword[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+            [33mid[39m=[32m"password"[39m
+            [33mname[39m=[32m"password"[39m
+            [33mtype[39m=[32m"password"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"[39m
+          [33mdata-testid[39m=[32m"submit-button"[39m
+          [33mtype[39m=[32m"submit"[39m
+        [36m>[39m
+          [0mSign in[0m
+        [36m</button>[39m
+      [36m</form>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+ ❯ Proxy.waitForWrapper node_modules/.pnpm/@testing-library+dom@10.4.0/node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ src/components/custom/auth/__tests__/LoginForm.test.tsx:45:11
+     43|     fireEvent.click(submitButton);
+     44| 
+     45|     await waitFor(() => {
+       |           ^
+     46|       expect(screen.getByTestId("email-error")).toHaveTextContent(
+     47|         "Invalid email address"
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  src/components/custom/auth/__tests__/LoginForm.test.tsx > LoginForm > shows loading state during form submission
+Error: [2mexpect([22m[31melement[39m[2m).toHaveTextContent()[22m
+
+Expected element to have text content:
+[32m  /signing in/i[39m
+Received:
+[31m  Sign in[39m
+ ❯ src/components/custom/auth/__tests__/LoginForm.test.tsx:106:26
+    104| 
+    105|     // Check that the button text changes to "Signing in..."
+    106|     expect(submitButton).toHaveTextContent(/signing in/i);
+       |                          ^
+    107| 
+    108|     // Wait for the submission to complete
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  src/components/custom/auth/__tests__/SignupForm.test.tsx > SignupForm > shows validation error for invalid email
+TestingLibraryElementError: Unable to find an element by: [data-testid="email-error"]
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<form[39m
+      [33mclass[39m=[32m"space-y-4"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"grid grid-cols-2 gap-4"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"firstName"[39m
+          [36m>[39m
+            [0mFirst Name[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+            [33mid[39m=[32m"firstName"[39m
+            [33mname[39m=[32m"firstName"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"lastName"[39m
+          [36m>[39m
+            [0mLast Name[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+            [33mid[39m=[32m"lastName"[39m
+            [33mname[39m=[32m"lastName"[39m
+          [36m/>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"space-y-2"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+          [33mfor[39m=[32m"email"[39m
+        [36m>[39m
+          [0mEmail[0m
+        [36m</label>[39m
+        [36m<input[39m
+          [33maria-invalid[39m=[32m"false"[39m
+          [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+          [33mid[39m=[32m"email"[39m
+          [33mname[39m=[32m"email"[39m
+          [33mtype[39m=[32m"email"[39m
+        [36m/>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"space-y-2"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+          [33mfor[39m=[32m"password"[39m
+        [36m>[39m
+          [0mPassword[0m
+        [36m</label>[39m
+        [36m<input[39m
+          [33maria-invalid[39m=[32m"false"[39m
+          [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+          [33mid[39m=[32m"password"[39m
+          [33mname[39m=[32m"password"[39m
+          [33mtype[39m=[32m"password"[39m
+        [36m/>[39m
+      [36m</div>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"space-y-2"[39m
+      [36m>[39m
+        [36m<label[39m
+          [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+          [33mfor[39m=[32m"confirmPassword"[39m
+        [36m>[39m
+          [0mConfirm Password[0m
+        [36m</label>[39m
+        [36m<input[39m
+          [33maria-invalid[39m=[32m"false"[39m
+          [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+          [33mid[39m=[32m"confirmPassword"[39m
+          [33mname[39m=[32m"confirmPassword"[39m
+          [33mtype[39m=[32m"password"[39m
+        [36m/>[39m
+      [36m</div>[39m
+      [36m<button[39m
+        [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"[39m
+        [33mdata-testid[39m=[32m"signup-button"[39m
+        [33mtype[39m=[32m"submit"[39m
+      [36m>[39m
+        [0mSign up[0m
+      [36m</button>[39m
+    [36m</form>[39m
+  [36m</div>[39m
+[36m</body>[39m
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<form[39m
+        [33mclass[39m=[32m"space-y-4"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"grid grid-cols-2 gap-4"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"space-y-2"[39m
+          [36m>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+              [33mfor[39m=[32m"firstName"[39m
+            [36m>[39m
+              [0mFirst Name[0m
+            [36m</label>[39m
+            [36m<input[39m
+              [33maria-invalid[39m=[32m"false"[39m
+              [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+              [33mid[39m=[32m"firstName"[39m
+              [33mname[39m=[32m"firstName"[39m
+            [36m/>[39m
+          [36m</div>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"space-y-2"[39m
+          [36m>[39m
+            [36m<label[39m
+              [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+              [33mfor[39m=[32m"lastName"[39m
+            [36m>[39m
+              [0mLast Name[0m
+            [36m</label>[39m
+            [36m<input[39m
+              [33maria-invalid[39m=[32m"false"[39m
+              [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+              [33mid[39m=[32m"lastName"[39m
+              [33mname[39m=[32m"lastName"[39m
+            [36m/>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"email"[39m
+          [36m>[39m
+            [0mEmail[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+            [33mid[39m=[32m"email"[39m
+            [33mname[39m=[32m"email"[39m
+            [33mtype[39m=[32m"email"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"password"[39m
+          [36m>[39m
+            [0mPassword[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+            [33mid[39m=[32m"password"[39m
+            [33mname[39m=[32m"password"[39m
+            [33mtype[39m=[32m"password"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"space-y-2"[39m
+        [36m>[39m
+          [36m<label[39m
+            [33mclass[39m=[32m"text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"[39m
+            [33mfor[39m=[32m"confirmPassword"[39m
+          [36m>[39m
+            [0mConfirm Password[0m
+          [36m</label>[39m
+          [36m<input[39m
+            [33maria-invalid[39m=[32m"false"[39m
+            [33mclass[39m=[32m"flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"[39m
+            [33mid[39m=[32m"confirmPassword"[39m
+            [33mname[39m=[32m"confirmPassword"[39m
+            [33mtype[39m=[32m"password"[39m
+          [36m/>[39m
+        [36m</div>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"[39m
+          [33mdata-testid[39m=[32m"signup-button"[39m
+          [33mtype[39m=[32m"submit"[39m
+        [36m>[39m
+          [0mSign up[0m
+        [36m</button>[39m
+      [36m</form>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+ ❯ Proxy.waitForWrapper node_modules/.pnpm/@testing-library+dom@10.4.0/node_modules/@testing-library/dom/dist/wait-for.js:163:27
+ ❯ src/components/custom/auth/__tests__/SignupForm.test.tsx:77:11
+     75| 
+     76|     // Check if validation error is displayed for email
+     77|     await waitFor(() => {
+       |           ^
+     78|       expect(screen.getByTestId("email-error")).toHaveTextContent(
+     79|         "Invalid email address"
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+
+ Test Files  3 failed | 14 passed (17)
+      Tests  4 failed | 79 passed (83)
+   Start at  15:40:47
+   Duration  3.22s (transform 356ms, setup 3.98s, collect 1.73s, tests 3.79s, environment 4.55s, prepare 1.24s)
+
+ ELIFECYCLE  Test failed. See above for more details.
