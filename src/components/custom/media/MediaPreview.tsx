@@ -63,7 +63,7 @@ export function MediaPreview({ className }: MediaPreviewProps) {
                   console.error("Error downloading image:", error);
                 }
               }}
-              className="absolute bottom-2 right-2  text-white p-2 rounded-full bg-blue-400 cursor-pointer w-10 h-10 [&_svg]:size-5 hover:bg-blue-600 transition-all duration-300"
+              className="absolute top-3 right-3  text-white p-2 rounded-full bg-blue-400 cursor-pointer w-10 h-10 [&_svg]:size-5 hover:bg-blue-600 transition-all duration-300"
               aria-label="Download image"
             >
               <DownloadIcon className="w-4 h-4 text-white group-hover:text-blue-500 transition-all duration-300" />

@@ -9,7 +9,7 @@ export function MediaGenerationPage() {
 
   return (
     <DashboardLayout>
-      <div className="flex flex-col h-[calc(100vh-56px)]">
+      <div className="flex flex-col h-[calc(100vh-65px)]">
         {/* Chat messages area */}
         <div className="flex-1 overflow-y-auto p-4">
           {mediaResponse === null && !isGenerating ? (

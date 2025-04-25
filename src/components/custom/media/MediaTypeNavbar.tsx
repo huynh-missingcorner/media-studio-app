@@ -18,7 +18,7 @@ export function MediaTypeNavbar() {
         size="icon"
         className={cn(
           "rounded-full w-10 h-10 [&_svg]:size-5",
-          selectedMediaType === "image" && "bg-blue-100 text-blue-700"
+          selectedMediaType === "image" && "bg-primary/20 text-primary"
         )}
         onClick={() => setSelectedMediaType("image")}
         title="Image Generation"
@@ -30,7 +30,7 @@ export function MediaTypeNavbar() {
         size="icon"
         className={cn(
           "rounded-full w-10 h-10 [&_svg]:size-5",
-          selectedMediaType === "audio" && "bg-blue-100 text-blue-700"
+          selectedMediaType === "audio" && "bg-primary/20 text-primary"
         )}
         onClick={() => setSelectedMediaType("audio")}
         title="Audio Generation"
@@ -42,7 +42,7 @@ export function MediaTypeNavbar() {
         size="icon"
         className={cn(
           "rounded-full w-10 h-10 [&_svg]:size-5",
-          selectedMediaType === "music" && "bg-blue-100 text-blue-700"
+          selectedMediaType === "music" && "bg-primary/20 text-primary"
         )}
         onClick={() => setSelectedMediaType("music")}
         title="Music Generation"
@@ -54,7 +54,7 @@ export function MediaTypeNavbar() {
         size="icon"
         className={cn(
           "rounded-full w-10 h-10 [&_svg]:size-5",
-          selectedMediaType === "video" && "bg-blue-100 text-blue-700"
+          selectedMediaType === "video" && "bg-primary/20 text-primary"
         )}
         onClick={() => setSelectedMediaType("video")}
         title="Video Generation"

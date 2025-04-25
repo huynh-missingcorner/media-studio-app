@@ -10,7 +10,7 @@ import { MediaResponseDto, OperationResponseDto } from "@/types/media";
 import { mediaService } from "@/services/mediaService";
 
 const CHECK_OPERATION_STATUS_INTERVAL = 5000;
-const MAX_CHECK_OPERATION_STATUS_ATTEMPTS = 10;
+const MAX_CHECK_OPERATION_STATUS_ATTEMPTS = 20;
 
 interface MediaState {
   // Current media type
@@ -127,27 +127,41 @@ export const useMediaStore = create<MediaState>((set, get) => ({
 
     // Loop request to check operation status
     for (let i = 0; i < MAX_CHECK_OPERATION_STATUS_ATTEMPTS; i++) {
-      const response = await mediaService.getOperationStatus(
-        operationResponse.operationId
-      );
-      if (response.status === "SUCCEEDED") {
-        set({ mediaResponse: response });
-        set({ isGenerating: false });
-
-        // Refresh history if callback is provided
-        if (
-          refreshHistoryCallback &&
-          typeof refreshHistoryCallback === "function"
-        ) {
-          refreshHistoryCallback(response);
-        }
-
-        break;
-      } else {
-        await new Promise((resolve) =>
-          setTimeout(resolve, CHECK_OPERATION_STATUS_INTERVAL)
+      try {
+        const response = await mediaService.getOperationStatus(
+          operationResponse.operationId
         );
+        if (response.status === "SUCCEEDED") {
+          set({ mediaResponse: response });
+          set({ isGenerating: false });
+
+          // Refresh history if callback is provided
+          if (
+            refreshHistoryCallback &&
+            typeof refreshHistoryCallback === "function"
+          ) {
+            refreshHistoryCallback(response);
+          }
+
+          break;
+        }
+      } catch (error) {
+        // Log the error but don't stop the retry loop
+        console.error("Error checking operation status:", error);
       }
+
+      // Wait before next attempt, regardless of success or failure
+      await new Promise((resolve) =>
+        setTimeout(resolve, CHECK_OPERATION_STATUS_INTERVAL)
+      );
+    }
+
+    // If we've exhausted all attempts and still don't have a result
+    if (!get().mediaResponse) {
+      set({ isGenerating: false });
+      console.warn(
+        `Failed to get operation status after ${MAX_CHECK_OPERATION_STATUS_ATTEMPTS} attempts`
+      );
     }
   },
   updateImageSettings: (settings) =>

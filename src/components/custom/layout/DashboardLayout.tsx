@@ -24,6 +24,7 @@ import { History, Home, Settings } from "lucide-react";
 import { MediaType } from "@/pages/app/dashboard-page";
 import { useLocation, useNavigate } from "react-router-dom";
 import { HistoryModal } from "../media/HistoryModal";
+import { Logo } from "@/components/custom/icons/logo";
 
 // Create a context to share the active media type
 interface DashboardContextType {
@@ -83,7 +84,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         <header className="border-b border-border py-2 px-4 z-30">
           <div className="mx-auto flex items-center justify-between">
             <div className="flex items-center gap-4">
-              <h1 className="text-xl font-bold">Media Studio</h1>
+              <div className="flex items-center gap-2">
+                <Logo className="h-12 w-auto" />
+              </div>
               <nav className="flex items-center gap-4">
                 <Button
                   variant="ghost"
@@ -147,7 +150,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           </div>
         </header>
 
-        <div className="relative flex h-[calc(100vh-57px)] overflow-hidden">
+        <div className="relative flex h-[calc(100vh-65px)] overflow-hidden">
           <main
             className={cn(
               settingsOpen ? "w-[calc(100%-320px)]" : "w-full",

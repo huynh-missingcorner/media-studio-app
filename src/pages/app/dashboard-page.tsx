@@ -23,12 +23,7 @@ export function DashboardPage() {
   return (
     <DashboardLayout>
       <div className="max-w-5xl mx-auto mt-12">
-        <h1 className="text-4xl font-medium text-center mb-2">Media Studio</h1>
-        <p className="text-xl text-center text-muted-foreground mb-12">
-          Create stunning media with AI
-        </p>
-
-        <div className="bg-blue-50 rounded-xl p-8 mb-12">
+        <div className="bg-primary/5 rounded-xl p-8 mb-12 mt-[150px]">
           <h2 className="text-2xl font-medium mb-6 text-center">
             Start with a text prompt
           </h2>
