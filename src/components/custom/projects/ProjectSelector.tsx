@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Folder } from "lucide-react";
 
 export function ProjectSelector() {
   const {
@@ -42,10 +43,13 @@ export function ProjectSelector() {
       value={currentProject?.id}
       onValueChange={handleProjectSelect}
     >
-      <SelectTrigger className="w-[200px]">
-        <SelectValue
-          placeholder={isLoading ? "Loading projects..." : "Select project"}
-        />
+      <SelectTrigger className="w-[240px]">
+        <div className="flex items-center gap-2">
+          <Folder className="w-4 h-4" />
+          <SelectValue
+            placeholder={isLoading ? "Loading projects..." : "Select project"}
+          />
+        </div>
       </SelectTrigger>
       <SelectContent>
         {(!projects || projects.length === 0) && (

@@ -19,6 +19,7 @@ import {
   MediaType,
   OperationResponseDto,
 } from "@/types/media";
+import { useMediaHistory } from "@/contexts/MediaHistoryContext";
 
 const promptSchema = z.object({
   prompt: z.string().min(3, "Prompt must be at least 3 characters"),
@@ -110,6 +111,7 @@ export function PromptInput() {
 
   const { currentProject } = useProjectStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { refreshAfterGeneration } = useMediaHistory();
 
   const form = useForm<PromptFormValues>({
     resolver: zodResolver(promptSchema),
@@ -188,6 +190,8 @@ export function PromptInput() {
 
       if (response && selectedMediaType !== "video") {
         setMediaResponse(response);
+        // Update history with the new media item
+        refreshAfterGeneration(response);
         toast({
           title: "Success",
           description: `Your ${selectedMediaType} has been generated successfully`,
@@ -197,7 +201,8 @@ export function PromptInput() {
       }
 
       if (operationResponse && selectedMediaType === "video") {
-        setOperationResponse(operationResponse);
+        setOperationResponse(operationResponse, refreshAfterGeneration);
+        // For video, we'll refresh history when the operation completes
       }
 
       form.reset();

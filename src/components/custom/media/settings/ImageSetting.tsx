@@ -5,10 +5,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Slider } from "@/components/ui/slider";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import { cn } from "@/lib/utils";
 import {
   AspectRatioOneToOne,
   AspectRatioFourToThree,
@@ -24,6 +22,7 @@ import {
   SelectItem,
   SelectTrigger,
 } from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
 
 export interface ImageSettingParams {
   model: string;
@@ -102,36 +101,25 @@ export function ImageSetting() {
             {/* Aspect Ratio Selection */}
             <div className="space-y-2">
               <Label>Aspect Ratio</Label>
-              <RadioGroup
-                value={imageSettings.aspectRatio}
-                onValueChange={handleAspectRatioChange}
-                className="grid grid-cols-5 gap-2"
-              >
-                {aspectRatioOptions.map((option) => (
-                  <div
-                    key={option.value}
-                    className="flex flex-col items-center space-y-1"
-                  >
-                    <div className="relative">
-                      <option.icon />
-                      <RadioGroupItem
-                        value={option.value}
-                        id={`ratio-${option.value}`}
-                        className="sr-only"
+              <div className="grid grid-cols-3 gap-2">
+                {aspectRatioOptions.map((option) => {
+                  const Icon = option.icon;
+                  const isSelected = imageSettings.aspectRatio === option.value;
+                  return (
+                    <Button
+                      key={option.value}
+                      variant={isSelected ? "default" : "outline"}
+                      className="h-auto py-2 px-2 flex flex-col items-center gap-1"
+                      onClick={() => handleAspectRatioChange(option.value)}
+                    >
+                      <Icon
+                        strokeColor={isSelected ? "white" : "currentColor"}
                       />
-                      <label
-                        htmlFor={`ratio-${option.value}`}
-                        className={cn(
-                          "absolute inset-0 rounded-md cursor-pointer border-2 border-transparent",
-                          imageSettings.aspectRatio === option.value &&
-                            "border-primary"
-                        )}
-                      />
-                    </div>
-                    <span className="text-xs">{option.value}</span>
-                  </div>
-                ))}
-              </RadioGroup>
+                      <span className="text-xs">{option.value}</span>
+                    </Button>
+                  );
+                })}
+              </div>
             </div>
 
             {/* Number of Results */}

@@ -5,7 +5,7 @@ import axios, {
 } from "axios";
 
 // Base API URL - should be configured from environment variables in a real app
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_URL = "/api";
 
 // Create a custom error class for API errors
 export class ApiError extends Error {

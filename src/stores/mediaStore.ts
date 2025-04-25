@@ -39,7 +39,10 @@ interface MediaState {
   setPrompt: (prompt: string) => void;
   setIsGenerating: (isGenerating: boolean) => void;
   setMediaResponse: (response: MediaResponseDto | null) => void;
-  setOperationResponse: (response: OperationResponseDto | null) => void;
+  setOperationResponse: (
+    response: OperationResponseDto | null,
+    refreshHistoryCallback?: (item: MediaResponseDto) => void
+  ) => void;
   updateImageSettings: (settings: Partial<ImageSettingParams>) => void;
   updateAudioSettings: (settings: Partial<AudioSettingParams>) => void;
   updateMusicSettings: (settings: Partial<MusicSettingParams>) => void;
@@ -115,7 +118,7 @@ export const useMediaStore = create<MediaState>((set, get) => ({
   setPrompt: (prompt) => set({ prompt }),
   setIsGenerating: (isGenerating) => set({ isGenerating }),
   setMediaResponse: (response) => set({ mediaResponse: response }),
-  setOperationResponse: async (operationResponse) => {
+  setOperationResponse: async (operationResponse, refreshHistoryCallback) => {
     set({ operationResponse });
 
     if (!operationResponse) {
@@ -130,6 +133,15 @@ export const useMediaStore = create<MediaState>((set, get) => ({
       if (response.status === "SUCCEEDED") {
         set({ mediaResponse: response });
         set({ isGenerating: false });
+
+        // Refresh history if callback is provided
+        if (
+          refreshHistoryCallback &&
+          typeof refreshHistoryCallback === "function"
+        ) {
+          refreshHistoryCallback(response);
+        }
+
         break;
       } else {
         await new Promise((resolve) =>
@@ -142,46 +154,40 @@ export const useMediaStore = create<MediaState>((set, get) => ({
     set((state) => ({
       imageSettings: { ...state.imageSettings, ...settings },
     })),
-
   updateAudioSettings: (settings) =>
     set((state) => ({
       audioSettings: { ...state.audioSettings, ...settings },
     })),
-
   updateMusicSettings: (settings) =>
     set((state) => ({
       musicSettings: { ...state.musicSettings, ...settings },
     })),
-
   updateVideoSettings: (settings) =>
     set((state) => ({
       videoSettings: { ...state.videoSettings, ...settings },
     })),
-
-  // Helper to get current settings based on selected media type
   getCurrentSettings: () => {
-    const state = get();
-    switch (state.selectedMediaType) {
+    const { selectedMediaType } = get();
+    switch (selectedMediaType) {
       case "image":
-        return state.imageSettings;
+        return get().imageSettings;
       case "audio":
-        return state.audioSettings;
+        return get().audioSettings;
       case "music":
-        return state.musicSettings;
+        return get().musicSettings;
       case "video":
-        return state.videoSettings;
+        return get().videoSettings;
       default:
-        return state.imageSettings;
+        return get().imageSettings;
     }
   },
-
-  // Generate payload for API
   getGenerationPayload: () => {
-    const state = get();
+    const { selectedMediaType, prompt } = get();
+    const settings = get().getCurrentSettings();
     return {
-      mediaType: state.selectedMediaType,
-      prompt: state.prompt,
-      settings: state.getCurrentSettings(),
+      mediaType: selectedMediaType,
+      prompt,
+      settings,
     };
   },
 }));

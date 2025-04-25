@@ -19,7 +19,7 @@ export const authService = {
    */
   async register(userData: RegisterDto): Promise<AuthResponseDto> {
     const response = await apiClient.post<AuthResponseDto>(
-      "/api/auth/register",
+      "/auth/register",
       userData
     );
 
@@ -37,7 +37,7 @@ export const authService = {
    */
   async login(loginData: LoginDto): Promise<AuthResponseDto> {
     const response = await apiClient.post<AuthResponseDto>(
-      "/api/auth/login",
+      "/auth/login",
       loginData
     );
 
@@ -56,7 +56,7 @@ export const authService = {
   async refreshToken(refreshToken: string): Promise<AuthResponseDto> {
     const data: RefreshTokenDto = { refreshToken };
     const response = await apiClient.post<AuthResponseDto>(
-      "/api/auth/refresh",
+      "/auth/refresh",
       data
     );
 
@@ -80,7 +80,7 @@ export const authService = {
    * @param email - The user's email address
    */
   async resetPassword(email: string): Promise<void> {
-    await apiClient.post("/api/auth/reset-password", { email });
+    await apiClient.post("/auth/reset-password", { email });
   },
 
   /**
@@ -88,7 +88,7 @@ export const authService = {
    * @returns User profile data
    */
   async getUserProfile(): Promise<ProfileDto> {
-    const response = await apiClient.get<ProfileDto>("/api/users/profile");
+    const response = await apiClient.get<ProfileDto>("/users/profile");
     return response.data;
   },
 
@@ -98,10 +98,7 @@ export const authService = {
    * @returns Updated user profile
    */
   async updateUserProfile(data: UpdateProfileDto): Promise<ProfileDto> {
-    const response = await apiClient.patch<ProfileDto>(
-      "/api/users/profile",
-      data
-    );
+    const response = await apiClient.patch<ProfileDto>("/users/profile", data);
     return response.data;
   },
 };

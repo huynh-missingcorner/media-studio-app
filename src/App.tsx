@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "@/contexts/AuthContext";
+import { MediaHistoryProvider } from "@/contexts/MediaHistoryContext";
 import { LoginPage } from "@/pages/auth/login-page";
 import { SignupPage } from "@/pages/auth/signup-page";
 import { ProtectedRoute } from "@/pages/ProtectedRoute";
@@ -14,36 +15,38 @@ function App() {
     <ThemeProvider>
       <BrowserRouter>
         <AuthProvider>
-          <div className="w-full min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
-            <Routes>
-              {/* Public routes */}
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<SignupPage />} />
+          <MediaHistoryProvider>
+            <div className="w-full min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white">
+              <Routes>
+                {/* Public routes */}
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<SignupPage />} />
 
-              {/* Protected routes */}
-              <Route
-                path="/dashboard"
-                element={
-                  <ProtectedRoute>
-                    <DashboardPage />
-                  </ProtectedRoute>
-                }
-              />
+                {/* Protected routes */}
+                <Route
+                  path="/dashboard"
+                  element={
+                    <ProtectedRoute>
+                      <DashboardPage />
+                    </ProtectedRoute>
+                  }
+                />
 
-              <Route
-                path="/dashboard/generate"
-                element={
-                  <ProtectedRoute>
-                    <MediaGenerationPage />
-                  </ProtectedRoute>
-                }
-              />
+                <Route
+                  path="/dashboard/generate"
+                  element={
+                    <ProtectedRoute>
+                      <MediaGenerationPage />
+                    </ProtectedRoute>
+                  }
+                />
 
-              {/* Catch-all redirect */}
-              <Route path="*" element={<Navigate to="/login" replace />} />
-            </Routes>
-            <Toaster />
-          </div>
+                {/* Catch-all redirect */}
+                <Route path="*" element={<Navigate to="/login" replace />} />
+              </Routes>
+              <Toaster />
+            </div>
+          </MediaHistoryProvider>
         </AuthProvider>
       </BrowserRouter>
     </ThemeProvider>

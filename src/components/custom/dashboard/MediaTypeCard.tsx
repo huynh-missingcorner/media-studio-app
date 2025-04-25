@@ -14,21 +14,19 @@ export function MediaTypeCard({
   title,
   description,
   onClick,
-  isSelected = false,
 }: MediaTypeCardProps) {
   return (
     <div
       className={cn(
         "flex flex-col items-center p-6 rounded-xl transition-all cursor-pointer hover:shadow-md",
-        "border border-border bg-background hover:bg-blue-50 hover:border-blue-200",
-        isSelected && "bg-blue-100 border-blue-300 shadow-sm"
+        "border border-border bg-background hover:bg-blue-50 hover:border-blue-200"
       )}
       onClick={onClick}
     >
       <div className="mb-4 p-3 rounded-full bg-blue-100 text-blue-700">
         {icon}
       </div>
-      <h3 className="text-lg font-semibold mb-1">{title}</h3>
+      <h3 className="text-lg font-medium mb-1">{title}</h3>
       {description && (
         <p className="text-sm text-muted-foreground text-center">
           {description}

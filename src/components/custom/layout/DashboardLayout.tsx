@@ -20,9 +20,10 @@ import { ProjectSelector } from "@/components/custom/projects/ProjectSelector";
 import { SettingsSidebar } from "../media/SettingsSidebar";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Settings } from "lucide-react";
+import { History, Home, Settings } from "lucide-react";
 import { MediaType } from "@/pages/app/dashboard-page";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { HistoryModal } from "../media/HistoryModal";
 
 // Create a context to share the active media type
 interface DashboardContextType {
@@ -48,9 +49,10 @@ interface DashboardLayoutProps {
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const { user, logout } = useAuth();
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [activeMediaType, setActiveMediaType] = useState<MediaType>("image");
-
+  const navigate = useNavigate();
   const getInitials = () => {
     if (!user) return "U";
     return `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`;
@@ -80,15 +82,32 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
       <div className="min-h-screen bg-background flex flex-col">
         <header className="border-b border-border py-2 px-4 z-30">
           <div className="mx-auto flex items-center justify-between">
-            <h1 className="text-xl font-bold">Media Studio</h1>
             <div className="flex items-center gap-4">
+              <h1 className="text-xl font-bold">Media Studio</h1>
               <nav className="flex items-center gap-4">
-                <button className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-[16px] font-normal cursor-pointer"
+                  onClick={() => navigate("/dashboard")}
+                >
+                  <Home strokeWidth={2} className="w-5 h-5" />
+                  Dashboard
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-[16px] font-normal cursor-pointer"
+                  onClick={() => setIsHistoryOpen(true)}
+                >
+                  <History strokeWidth={2} className="w-5 h-5" />
                   History
-                </button>
-                <ProjectSelector />
+                </Button>
               </nav>
+            </div>
 
+            <div className="flex items-center gap-6">
+              <ProjectSelector />
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <button className="outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-full">
@@ -166,6 +185,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           open={isProfileOpen}
           onOpenChange={setIsProfileOpen}
         />
+
+        <HistoryModal open={isHistoryOpen} onOpenChange={setIsHistoryOpen} />
       </div>
     </DashboardContext.Provider>
   );

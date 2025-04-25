@@ -20,7 +20,7 @@ export const mediaService = {
    */
   async generateImage(data: ImageGenerationDto): Promise<MediaResponseDto> {
     const response = await apiClient.post<MediaResponseDto>(
-      "/api/media/image",
+      "/media/image",
       data
     );
     return response.data;
@@ -33,7 +33,7 @@ export const mediaService = {
    */
   async generateVideo(data: VideoGenerationDto): Promise<OperationResponseDto> {
     const response = await apiClient.post<OperationResponseDto>(
-      "/api/media/video/async",
+      "/media/video/async",
       data
     );
     return response.data;
@@ -41,7 +41,7 @@ export const mediaService = {
 
   async getOperationStatus(operationId: string): Promise<MediaResponseDto> {
     const response = await apiClient.get<MediaResponseDto>(
-      `/api/media/video/status`,
+      `/media/video/status`,
       {
         params: {
           operationId,
@@ -58,7 +58,7 @@ export const mediaService = {
    */
   async generateMusic(data: MusicGenerationDto): Promise<MediaResponseDto> {
     const response = await apiClient.post<MediaResponseDto>(
-      "/api/media/music",
+      "/media/music",
       data
     );
     return response.data;
@@ -71,7 +71,7 @@ export const mediaService = {
    */
   async generateAudio(data: AudioGenerationDto): Promise<MediaResponseDto> {
     const response = await apiClient.post<MediaResponseDto>(
-      "/api/media/audio",
+      "/media/audio",
       data
     );
     return response.data;
@@ -85,12 +85,16 @@ export const mediaService = {
   async getMediaHistory(
     params: MediaHistoryParams = { page: 1, limit: 10 }
   ): Promise<{
-    items: MediaResponseDto[];
-    total: number;
-    page: number;
-    limit: number;
+    data: MediaResponseDto[];
+    metadata: {
+      currentPage: number;
+      itemCount: number;
+      itemsPerPage: number;
+      totalPages: number;
+      totalItems: number;
+    };
   }> {
-    const response = await apiClient.get("/api/media/history", { params });
+    const response = await apiClient.get("/media/history", { params });
     return response.data;
   },
 
@@ -100,7 +104,7 @@ export const mediaService = {
    * @returns Media details
    */
   async getMediaById(id: string): Promise<MediaResponseDto> {
-    const response = await apiClient.get<MediaResponseDto>(`/api/media/${id}`);
+    const response = await apiClient.get<MediaResponseDto>(`/media/${id}`);
     return response.data;
   },
 };

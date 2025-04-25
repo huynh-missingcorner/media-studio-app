@@ -10,7 +10,7 @@ export const projectService = {
    * @returns Array of projects
    */
   async getProjects(): Promise<Project[]> {
-    const response = await apiClient.get<Project[]>("/api/api/projects");
+    const response = await apiClient.get<Project[]>("/api/projects");
     return response.data;
   },
 
@@ -20,7 +20,7 @@ export const projectService = {
    * @returns Project details
    */
   async getProjectById(id: string): Promise<Project> {
-    const response = await apiClient.get<Project>(`/api/api/projects/${id}`);
+    const response = await apiClient.get<Project>(`/api/projects/${id}`);
     return response.data;
   },
 
@@ -30,7 +30,7 @@ export const projectService = {
    * @returns Created project
    */
   async createProject(data: CreateProjectDto): Promise<Project> {
-    const response = await apiClient.post<Project>("/api/api/projects", data);
+    const response = await apiClient.post<Project>("/api/projects", data);
     return response.data;
   },
 
@@ -42,7 +42,7 @@ export const projectService = {
    */
   async updateProject(id: string, data: UpdateProjectDto): Promise<Project> {
     const response = await apiClient.patch<Project>(
-      `/api/api/projects/${id}`,
+      `/api/projects/${id}`,
       data
     );
     return response.data;
@@ -53,6 +53,6 @@ export const projectService = {
    * @param id - Project ID
    */
   async deleteProject(id: string): Promise<void> {
-    await apiClient.delete(`/api/api/projects/${id}`);
+    await apiClient.delete(`/api/projects/${id}`);
   },
 };
