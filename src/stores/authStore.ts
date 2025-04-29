@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { authService } from "@/services/authService";
-import { ProfileDto, RegisterDto, UpdateProfileDto } from "@/types/auth";
+import { authService } from "@/services/api/authService";
+import { ProfileDto, RegisterDto, UpdateProfileDto } from "@/types/auth.types";
 
 interface AuthState {
   user: ProfileDto | null;
@@ -62,6 +62,7 @@ export const useAuthStore = create<AuthState>()(
           } else {
             set({ error: "An unknown error occurred", isLoading: false });
           }
+          throw error;
         }
       },
 

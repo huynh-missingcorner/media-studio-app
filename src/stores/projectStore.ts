@@ -1,7 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { projectService } from "@/services/projectService";
-import { Project, CreateProjectDto, UpdateProjectDto } from "@/types/project";
+import { projectService } from "@/services/api/projectService";
+import {
+  Project,
+  CreateProjectDto,
+  UpdateProjectDto,
+} from "@/types/project.types";
 
 interface ProjectState {
   // State

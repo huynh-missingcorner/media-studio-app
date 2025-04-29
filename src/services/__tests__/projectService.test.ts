@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
-import { projectService } from "@/services/projectService";
-import { CreateProjectDto, UpdateProjectDto } from "@/types/project";
+import { projectService } from "@/services/api/projectService";
+import { CreateProjectDto, UpdateProjectDto } from "@/types/project.types";
 
 // Mock axios
 vi.mock("axios");

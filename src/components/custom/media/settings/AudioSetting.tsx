@@ -23,6 +23,7 @@ export interface AudioSettingParams {
   audioSampleRate: string;
   model: string;
   language: string;
+  negativePrompt?: string;
 }
 
 const voiceOptions = [

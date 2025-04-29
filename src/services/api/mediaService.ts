@@ -7,7 +7,8 @@ import {
   MediaResponseDto,
   MediaHistoryParams,
   OperationResponseDto,
-} from "@/types/media";
+  ImageUpscaleDto,
+} from "@/types/media.types";
 
 /**
  * Service for handling media generation operations
@@ -27,14 +28,46 @@ export const mediaService = {
   },
 
   /**
+   * Upscale an image using Vertex AI Media Studio
+   * @param data - Image upscale parameters
+   * @returns Media upscale response
+   */
+  async upscaleImage(data: ImageUpscaleDto): Promise<MediaResponseDto> {
+    const response = await apiClient.post<MediaResponseDto>(
+      "/media/image/upscale",
+      data
+    );
+    return response.data;
+  },
+
+  /**
    * Generate a video asynchronously using Vertex AI Media Studio
    * @param data - Video generation parameters
    * @returns Media generation response
    */
   async generateVideo(data: VideoGenerationDto): Promise<OperationResponseDto> {
+    // Create a copy of the data so we don't modify the original
+    const videoData = { ...data };
+
+    // Extract reference image from referenceData if it exists
+    if (videoData.referenceData && videoData.referenceData.length > 0) {
+      // If we have multiple references, log a warning and use only the first one
+      if (videoData.referenceData.length > 1) {
+        console.log(
+          `Video supports only one reference image. Using the first reference.`
+        );
+      }
+
+      // Set the referenceImage property using the first reference data
+      videoData.referenceImage = videoData.referenceData[0].referenceImage;
+
+      // Now remove the referenceData field entirely as it's not needed for video generation
+      delete videoData.referenceData;
+    }
+
     const response = await apiClient.post<OperationResponseDto>(
       "/media/video/async",
-      data
+      videoData
     );
     return response.data;
   },
@@ -86,7 +119,7 @@ export const mediaService = {
     params: MediaHistoryParams = { page: 1, limit: 10 }
   ): Promise<{
     data: MediaResponseDto[];
-    metadata: {
+    meta: {
       currentPage: number;
       itemCount: number;
       itemsPerPage: number;

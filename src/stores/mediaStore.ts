@@ -6,8 +6,9 @@ import type {
   MusicSettingParams,
   VideoSettingParams,
 } from "@/components/custom/media/settings";
-import { MediaResponseDto, OperationResponseDto } from "@/types/media";
-import { mediaService } from "@/services/mediaService";
+import { MediaResponseDto, OperationResponseDto } from "@/types/media.types";
+import { mediaService } from "@/services/api/mediaService";
+import { useMediaHistoryStore } from "./mediaHistoryStore";
 
 const CHECK_OPERATION_STATUS_INTERVAL = 5000;
 const MAX_CHECK_OPERATION_STATUS_ATTEMPTS = 20;
@@ -35,7 +36,10 @@ interface MediaState {
   operationResponse: OperationResponseDto | null;
 
   // Actions
-  setSelectedMediaType: (type: MediaType) => void;
+  setSelectedMediaType: (
+    type: MediaType,
+    options?: { keepMediaResponse?: boolean }
+  ) => void;
   setPrompt: (prompt: string) => void;
   setIsGenerating: (isGenerating: boolean) => void;
   setMediaResponse: (response: MediaResponseDto | null) => void;
@@ -76,7 +80,7 @@ export const useMediaStore = create<MediaState>((set, get) => ({
   imageSettings: {
     model: "imagen-3.0-generate-002",
     aspectRatio: "1:1",
-    numberOfResults: 1,
+    sampleCount: 1,
     allowPeopleAndFaces: true,
   },
 
@@ -98,7 +102,7 @@ export const useMediaStore = create<MediaState>((set, get) => ({
   videoSettings: {
     model: "veo-2.0-generate-001",
     aspectRatio: "16:9",
-    numberOfResults: 1,
+    sampleCount: 1,
     durationSeconds: "5",
     enhancePrompt: true,
     seed: 42,
@@ -110,20 +114,26 @@ export const useMediaStore = create<MediaState>((set, get) => ({
   operationResponse: null,
 
   // Actions
-  setSelectedMediaType: (type) => {
+  setSelectedMediaType: (type, options = { keepMediaResponse: false }) => {
     set({ selectedMediaType: type });
-    set({ mediaResponse: null });
-    set({ operationResponse: null });
+
+    if (!options.keepMediaResponse) {
+      set({ mediaResponse: null });
+      set({ operationResponse: null });
+    }
   },
   setPrompt: (prompt) => set({ prompt }),
   setIsGenerating: (isGenerating) => set({ isGenerating }),
   setMediaResponse: (response) => set({ mediaResponse: response }),
-  setOperationResponse: async (operationResponse, refreshHistoryCallback) => {
+  setOperationResponse: async (operationResponse) => {
     set({ operationResponse });
 
     if (!operationResponse) {
       return;
     }
+
+    // Import here to avoid circular dependencies
+    const { refreshAfterGeneration } = useMediaHistoryStore.getState();
 
     // Loop request to check operation status
     for (let i = 0; i < MAX_CHECK_OPERATION_STATUS_ATTEMPTS; i++) {
@@ -135,13 +145,8 @@ export const useMediaStore = create<MediaState>((set, get) => ({
           set({ mediaResponse: response });
           set({ isGenerating: false });
 
-          // Refresh history if callback is provided
-          if (
-            refreshHistoryCallback &&
-            typeof refreshHistoryCallback === "function"
-          ) {
-            refreshHistoryCallback(response);
-          }
+          // Refresh history using the store's function
+          refreshAfterGeneration(response);
 
           break;
         }

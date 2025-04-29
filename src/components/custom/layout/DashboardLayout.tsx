@@ -16,15 +16,17 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { UserProfileDialog } from "@/components/custom/profile/UserProfileDialog";
-import { ProjectSelector } from "@/components/custom/projects/ProjectSelector";
-import { SettingsSidebar } from "../media/SettingsSidebar";
+
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { History, Home, Settings } from "lucide-react";
 import { MediaType } from "@/pages/app/dashboard-page";
 import { useLocation, useNavigate } from "react-router-dom";
-import { HistoryModal } from "../media/HistoryModal";
+import { HistoryModal } from "@/components/custom/media/history/HistoryModal";
 import { Logo } from "@/components/custom/icons/logo";
+import { ProjectSelector } from "../projects/ProjectSelector";
+import { SettingsSidebar } from "../media/chat/SettingsSidebar";
+import { useMediaHistoryStore } from "@/stores";
 
 // Create a context to share the active media type
 interface DashboardContextType {
@@ -53,6 +55,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [activeMediaType, setActiveMediaType] = useState<MediaType>("image");
+  const { setPage } = useMediaHistoryStore();
   const navigate = useNavigate();
   const getInitials = () => {
     if (!user) return "U";
@@ -78,6 +81,11 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
     }
   }, [isGenerationPage]);
 
+  const handleHistoryOpen = () => {
+    setIsHistoryOpen(true);
+    setPage(1);
+  };
+
   return (
     <DashboardContext.Provider value={contextValue}>
       <div className="min-h-screen bg-background flex flex-col">
@@ -101,7 +109,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   variant="ghost"
                   size="sm"
                   className="text-[16px] font-normal cursor-pointer"
-                  onClick={() => setIsHistoryOpen(true)}
+                  onClick={handleHistoryOpen}
                 >
                   <History strokeWidth={2} className="w-5 h-5" />
                   History

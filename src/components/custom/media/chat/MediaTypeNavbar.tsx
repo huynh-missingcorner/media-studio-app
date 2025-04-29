@@ -1,10 +1,5 @@
 import { Button } from "@/components/ui/button";
-import {
-  ImageIcon,
-  AudioIcon,
-  MusicIcon,
-  VideoIcon,
-} from "@/components/ui/icons";
+import { ImageIcon, AudioLines, MusicIcon, VideoIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useMediaStore } from "@/stores/mediaStore";
 
@@ -35,7 +30,7 @@ export function MediaTypeNavbar() {
         onClick={() => setSelectedMediaType("audio")}
         title="Audio Generation"
       >
-        <AudioIcon className="w-5 h-5" />
+        <AudioLines className="w-5 h-5" />
       </Button>
       <Button
         variant="ghost"

@@ -1,7 +1,7 @@
-import { ImageSetting } from "./settings/ImageSetting";
-import { AudioSetting } from "./settings/AudioSetting";
-import { MusicSetting } from "./settings/MusicSetting";
-import { VideoSetting } from "./settings/VideoSetting";
+import { ImageSetting } from "@/components/custom/media/settings/ImageSetting";
+import { AudioSetting } from "@/components/custom/media/settings/AudioSetting";
+import { MusicSetting } from "@/components/custom/media/settings/MusicSetting";
+import { VideoSetting } from "@/components/custom/media/settings/VideoSetting";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { useMediaStore } from "@/stores/mediaStore";

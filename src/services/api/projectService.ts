@@ -1,5 +1,9 @@
 import apiClient from "@/lib/api";
-import { Project, CreateProjectDto, UpdateProjectDto } from "@/types/project";
+import {
+  Project,
+  CreateProjectDto,
+  UpdateProjectDto,
+} from "@/types/project.types";
 
 /**
  * Service for handling project-related operations

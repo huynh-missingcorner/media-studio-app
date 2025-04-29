@@ -6,7 +6,7 @@ import {
   RefreshTokenDto,
   RegisterDto,
   UpdateProfileDto,
-} from "@/types/auth";
+} from "@/types/auth.types";
 
 /**
  * Service for handling authentication and user profile operations

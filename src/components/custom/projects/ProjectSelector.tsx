@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useProjectStore } from "@/stores/projectStore";
 import {
   Select,
@@ -12,26 +11,8 @@ import {
 import { Folder } from "lucide-react";
 
 export function ProjectSelector() {
-  const {
-    projects,
-    currentProject,
-    isLoading,
-    fetchProjects,
-    refreshIfNeeded,
-    setCurrentProject,
-  } = useProjectStore();
-
-  // Fetch projects on initial load
-  useEffect(() => {
-    fetchProjects();
-
-    // Set up a refresh interval
-    const intervalId = setInterval(() => {
-      refreshIfNeeded();
-    }, 5 * 60 * 1000); // Check every 5 minutes
-
-    return () => clearInterval(intervalId);
-  }, [fetchProjects, refreshIfNeeded]);
+  const { projects, currentProject, isLoading, setCurrentProject } =
+    useProjectStore();
 
   const handleProjectSelect = (projectId: string) => {
     setCurrentProject(projectId);

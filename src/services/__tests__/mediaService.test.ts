@@ -1,13 +1,13 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import axios, { AxiosError, InternalAxiosRequestConfig } from "axios";
-import { mediaService } from "@/services/mediaService";
+import { mediaService } from "@/services/api/mediaService";
 import {
   ImageGenerationDto,
   VideoGenerationDto,
   MusicGenerationDto,
   AudioGenerationDto,
   MediaHistoryParams,
-} from "@/types/media";
+} from "@/types/media.types";
 
 // Mock axios
 vi.mock("axios");

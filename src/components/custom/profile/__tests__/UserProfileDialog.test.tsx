@@ -2,7 +2,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@/test/utils";
 import { UserProfileDialog } from "../UserProfileDialog";
 import { useAuth } from "@/contexts/AuthContext";
-import { authService } from "@/services/authService";
+import { authService } from "@/services/api/authService";
 
 // Mock the useAuth hook
 vi.mock("@/contexts/AuthContext", () => ({

@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 export interface MusicSettingParams {
   model: string;
   seed: number;
+  negativePrompt?: string;
 }
 
 // AI model options

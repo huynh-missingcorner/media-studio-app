@@ -20,6 +20,7 @@ const signupSchema = z
       .min(1, "Password is required")
       .min(8, "Password must be at least 8 characters"),
     confirmPassword: z.string().min(1, "Confirm password is required"),
+    inviteCode: z.string().min(1, "Invite code is required"),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
@@ -49,6 +50,7 @@ export function SignupForm({ onSubmit }: SignupFormProps) {
       email: "",
       password: "",
       confirmPassword: "",
+      inviteCode: "",
     },
   });
 
@@ -145,6 +147,22 @@ export function SignupForm({ onSubmit }: SignupFormProps) {
             data-testid="confirmPassword-error"
           >
             {errors.confirmPassword.message}
+          </p>
+        )}
+      </div>
+
+      <div className="space-y-2">
+        <Label htmlFor="inviteCode">Invite code</Label>
+        <Input
+          id="inviteCode"
+          type="text"
+          {...register("inviteCode")}
+          disabled={isSubmitting}
+          aria-invalid={!!errors.inviteCode}
+        />
+        {errors.email && (
+          <p className="text-sm text-red-500" data-testid="email-error">
+            {errors.email.message}
           </p>
         )}
       </div>

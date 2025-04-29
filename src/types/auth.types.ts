@@ -3,6 +3,7 @@ export interface RegisterDto {
   lastName: string;
   email: string;
   password: string;
+  inviteCode: string;
 }
 
 export interface LoginDto {

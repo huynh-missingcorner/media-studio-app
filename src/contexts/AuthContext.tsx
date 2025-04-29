@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, ReactNode } from "react";
 import { useAuthStore } from "@/stores/authStore";
-import { ProfileDto, RegisterDto, UpdateProfileDto } from "@/types/auth";
+import { ProfileDto, RegisterDto, UpdateProfileDto } from "@/types/auth.types";
 
 interface AuthContextType {
   user: ProfileDto | null;

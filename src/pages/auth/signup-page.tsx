@@ -17,6 +17,7 @@ export function SignupPage() {
     lastName: string;
     email: string;
     password: string;
+    inviteCode: string;
   }) => {
     try {
       setError(null);

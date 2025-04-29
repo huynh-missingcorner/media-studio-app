@@ -38,6 +38,9 @@
               }
             }
           },
+          "403": {
+            "description": "Invalid invite code"
+          },
           "409": {
             "description": "User with this email already exists"
           }
@@ -345,6 +348,41 @@
         "tags": ["Media"]
       }
     },
+    "/api/media/image/upscale": {
+      "post": {
+        "operationId": "MediaController_upscaleImage",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ImageUpscaleDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Image upscaling request created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MediaResponseDto"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Upscale an image using Vertex AI Media Studio",
+        "tags": ["Media"]
+      }
+    },
     "/api/media/video/async": {
       "post": {
         "operationId": "MediaController_generateVideoAsync",
@@ -370,6 +408,33 @@
           }
         ],
         "summary": "Generate a video asynchronously using Vertex AI Media Studio",
+        "tags": ["Media"]
+      }
+    },
+    "/api/media/video/status": {
+      "get": {
+        "operationId": "MediaController_getVideoGenerationResults",
+        "parameters": [
+          {
+            "name": "operationId",
+            "required": true,
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Video generation status retrieved"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get the status of a video generation request",
         "tags": ["Media"]
       }
     },
@@ -561,6 +626,161 @@
         "summary": "Get a media generation request by ID",
         "tags": ["Media"]
       }
+    },
+    "/api/files/upload": {
+      "post": {
+        "operationId": "FileController_uploadFile",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary",
+                    "description": "File to upload"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "File successfully uploaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UploadFileResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid file upload"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Upload a file to Google Cloud Storage",
+        "tags": ["files"]
+      }
+    },
+    "/api/files/upload-multiple": {
+      "post": {
+        "operationId": "FileController_uploadMultipleFiles",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    },
+                    "description": "Files to upload (maximum 10)"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Files successfully uploaded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MultipleUploadFileResponseDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid file upload"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Upload multiple files to Google Cloud Storage",
+        "tags": ["files"]
+      }
+    },
+    "/api/files/download": {
+      "get": {
+        "operationId": "FileController_downloadFile",
+        "parameters": [
+          {
+            "name": "gcsUri",
+            "required": true,
+            "in": "query",
+            "description": "Google Cloud Storage URI of the file to download",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "File successfully downloaded"
+          },
+          "400": {
+            "description": "Invalid GCS URI provided"
+          },
+          "404": {
+            "description": "File not found in storage"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Download a file from Google Cloud Storage",
+        "tags": ["files"]
+      }
+    },
+    "/api/files/signed-url": {
+      "get": {
+        "operationId": "FileController_getSignedUrl",
+        "parameters": [
+          {
+            "name": "gcsUri",
+            "required": true,
+            "in": "query",
+            "description": "Google Cloud Storage URI of the file",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Signed URL retrieved"
+          }
+        },
+        "security": [
+          {
+            "bearer": []
+          }
+        ],
+        "summary": "Get a signed URL for a media file",
+        "tags": ["files"]
+      }
     }
   },
   "info": {
@@ -602,9 +822,35 @@
             "type": "string",
             "description": "User last name",
             "example": "Doe"
+          },
+          "inviteCode": {
+            "type": "string",
+            "description": "Required invite code for registration. Contact administrators to obtain a valid code.",
+            "example": "INVITE_CODE_2024"
           }
         },
-        "required": ["email", "password", "firstName", "lastName"]
+        "required": ["email", "password", "firstName", "lastName", "inviteCode"]
+      },
+      "ProfileDto": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User email address",
+            "example": "user@example.com"
+          },
+          "firstName": {
+            "type": "string",
+            "description": "User first name",
+            "example": "John"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "User last name",
+            "example": "Doe"
+          }
+        },
+        "required": ["email", "firstName", "lastName"]
       },
       "AuthResponseDto": {
         "type": "object",
@@ -634,6 +880,14 @@
             "description": "User role",
             "enum": ["ADMIN", "USER"],
             "example": "USER"
+          },
+          "user": {
+            "description": "User profile",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ProfileDto"
+              }
+            ]
           }
         },
         "required": [
@@ -641,7 +895,8 @@
           "refreshToken",
           "expiresIn",
           "userId",
-          "role"
+          "role",
+          "user"
         ]
       },
       "LoginDto": {
@@ -670,27 +925,6 @@
           }
         },
         "required": ["refreshToken"]
-      },
-      "ProfileDto": {
-        "type": "object",
-        "properties": {
-          "email": {
-            "type": "string",
-            "description": "User email address",
-            "example": "user@example.com"
-          },
-          "firstName": {
-            "type": "string",
-            "description": "User first name",
-            "example": "John"
-          },
-          "lastName": {
-            "type": "string",
-            "description": "User last name",
-            "example": "Doe"
-          }
-        },
-        "required": ["email", "firstName", "lastName"]
       },
       "UpdateProfileDto": {
         "type": "object",
@@ -748,6 +982,62 @@
           }
         }
       },
+      "ReferenceImageDto": {
+        "type": "object",
+        "properties": {
+          "gcsUri": {
+            "type": "string",
+            "description": "The gcs uri for the reference image",
+            "example": "gs://bucket/image.jpg"
+          },
+          "bytesBase64Encoded": {
+            "type": "string",
+            "description": "The bytes base64 encoded for the reference image",
+            "example": "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+ip1sAAAAASUVORK5CYII="
+          }
+        },
+        "required": ["gcsUri", "bytesBase64Encoded"]
+      },
+      "ReferenceDataDto": {
+        "type": "object",
+        "properties": {
+          "referenceId": {
+            "type": "number",
+            "description": "The reference id for the image generation",
+            "example": 1
+          },
+          "description": {
+            "type": "string",
+            "description": "The description for the reference data",
+            "example": "A beautiful landscape"
+          },
+          "referenceType": {
+            "type": "string",
+            "description": "The reference type for the image generation",
+            "example": "default"
+          },
+          "secondaryReferenceType": {
+            "type": "string",
+            "description": "The secondary reference type for the image generation",
+            "example": "SUBJECT_TYPE_DEFAULT"
+          },
+          "referenceImage": {
+            "description": "The reference image for the image generation",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceImageDto"
+              }
+            ]
+          }
+        },
+        "required": [
+          "referenceId",
+          "description",
+          "referenceType",
+          "secondaryReferenceType",
+          "referenceImage"
+        ]
+      },
       "ImageGenerationDto": {
         "type": "object",
         "properties": {
@@ -760,6 +1050,12 @@
             "type": "string",
             "description": "The prompt for the media generation",
             "example": "A beautiful sunset over a calm ocean"
+          },
+          "negativePrompt": {
+            "type": "string",
+            "description": "The negative prompt for the media generation",
+            "example": "low quality, blurry, distorted",
+            "default": ""
           },
           "mediaType": {
             "type": "string",
@@ -781,20 +1077,148 @@
             "type": "string",
             "description": "The model to use for the image generation",
             "default": "imagen-3.0-generate-002"
+          },
+          "referenceData": {
+            "description": "The reference data for the image generation",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReferenceDataDto"
+            }
+          }
+        },
+        "required": ["projectId", "prompt", "negativePrompt", "mediaType"]
+      },
+      "MediaResultDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Media result ID",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "resultUrl": {
+            "type": "string",
+            "description": "Media result URL",
+            "example": "https://example.com/media-result.jpg"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "Media result metadata"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Media result created at",
+            "example": "2021-01-01T00:00:00.000Z"
+          }
+        },
+        "required": ["id", "resultUrl", "metadata", "createdAt"]
+      },
+      "MediaResponseDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Media generation ID",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "mediaType": {
+            "type": "string",
+            "description": "Media type",
+            "example": "IMAGE"
+          },
+          "prompt": {
+            "type": "string",
+            "description": "Prompt",
+            "example": "A beautiful sunset over a calm ocean"
+          },
+          "results": {
+            "description": "Media results",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MediaResultDto"
+            }
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "Error message",
+            "example": "An error occurred while generating the media"
+          },
+          "parameters": {
+            "type": "object",
+            "description": "Parameters"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Created at",
+            "example": "2021-01-01T00:00:00.000Z"
+          },
+          "projectId": {
+            "type": "string",
+            "description": "Project ID",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          }
+        },
+        "required": [
+          "id",
+          "mediaType",
+          "prompt",
+          "results",
+          "errorMessage",
+          "parameters",
+          "createdAt",
+          "projectId"
+        ]
+      },
+      "ImageUpscaleDto": {
+        "type": "object",
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "description": "The ID of the project",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "prompt": {
+            "type": "string",
+            "description": "The prompt for the media generation",
+            "example": "A beautiful sunset over a calm ocean"
+          },
+          "negativePrompt": {
+            "type": "string",
+            "description": "The negative prompt for the media generation",
+            "example": "low quality, blurry, distorted",
+            "default": ""
+          },
+          "mediaType": {
+            "type": "string",
+            "description": "The type of media to generate",
+            "example": "IMAGE"
+          },
+          "gcsUri": {
+            "type": "string",
+            "description": "The source image to upscale (GCS URI)",
+            "example": "gs://bucket-name/source-photos/photo.png"
+          },
+          "upscaleFactor": {
+            "type": "string",
+            "description": "The upscale factor for the image",
+            "enum": ["x2", "x4"],
+            "default": "x2"
+          },
+          "model": {
+            "type": "string",
+            "description": "The model to use for image upscaling",
+            "default": "imagegeneration@002"
           }
         },
         "required": [
           "projectId",
           "prompt",
+          "negativePrompt",
           "mediaType",
-          "aspectRatio",
-          "sampleCount",
-          "model"
+          "gcsUri"
         ]
-      },
-      "MediaResponseDto": {
-        "type": "object",
-        "properties": {}
       },
       "VideoGenerationDto": {
         "type": "object",
@@ -808,6 +1232,12 @@
             "type": "string",
             "description": "The prompt for the media generation",
             "example": "A beautiful sunset over a calm ocean"
+          },
+          "negativePrompt": {
+            "type": "string",
+            "description": "The negative prompt for the media generation",
+            "example": "low quality, blurry, distorted",
+            "default": ""
           },
           "mediaType": {
             "type": "string",
@@ -845,11 +1275,20 @@
           "seed": {
             "type": "number",
             "description": "The seed for the video generation"
+          },
+          "referenceImage": {
+            "description": "The reference image for video generation",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/ReferenceImageDto"
+              }
+            ]
           }
         },
         "required": [
           "projectId",
           "prompt",
+          "negativePrompt",
           "mediaType",
           "durationSeconds",
           "aspectRatio",
@@ -871,6 +1310,12 @@
             "type": "string",
             "description": "The prompt for the media generation",
             "example": "A beautiful sunset over a calm ocean"
+          },
+          "negativePrompt": {
+            "type": "string",
+            "description": "The negative prompt for the media generation",
+            "example": "low quality, blurry, distorted",
+            "default": ""
           },
           "mediaType": {
             "type": "string",
@@ -907,6 +1352,7 @@
         "required": [
           "projectId",
           "prompt",
+          "negativePrompt",
           "mediaType",
           "durationSeconds",
           "genre",
@@ -927,6 +1373,12 @@
             "type": "string",
             "description": "The prompt for the media generation",
             "example": "A beautiful sunset over a calm ocean"
+          },
+          "negativePrompt": {
+            "type": "string",
+            "description": "The negative prompt for the media generation",
+            "example": "low quality, blurry, distorted",
+            "default": ""
           },
           "mediaType": {
             "type": "string",
@@ -953,11 +1405,57 @@
         "required": [
           "projectId",
           "prompt",
+          "negativePrompt",
           "mediaType",
           "durationSeconds",
           "audioStyle",
           "seed"
         ]
+      },
+      "UploadFileResponseDto": {
+        "type": "object",
+        "properties": {
+          "gcsUri": {
+            "type": "string",
+            "description": "Google Cloud Storage URI of the uploaded file",
+            "example": "gs://your-bucket-name/path/to/file.jpg"
+          },
+          "signedUrl": {
+            "type": "string",
+            "description": "Signed URL for temporary access to the file",
+            "example": "https://storage.googleapis.com/your-bucket-name/path/to/file.jpg?X-Goog-Signature=..."
+          }
+        },
+        "required": ["gcsUri", "signedUrl"]
+      },
+      "FileInfo": {
+        "type": "object",
+        "properties": {
+          "gcsUri": {
+            "type": "string",
+            "description": "Google Cloud Storage URI of the uploaded file",
+            "example": "gs://your-bucket-name/path/to/file.jpg"
+          },
+          "signedUrl": {
+            "type": "string",
+            "description": "Signed URL for temporary access to the file",
+            "example": "https://storage.googleapis.com/your-bucket-name/path/to/file.jpg?X-Goog-Signature=..."
+          }
+        },
+        "required": ["gcsUri", "signedUrl"]
+      },
+      "MultipleUploadFileResponseDto": {
+        "type": "object",
+        "properties": {
+          "files": {
+            "description": "Array of file information including GCS URIs and signed URLs",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FileInfo"
+            }
+          }
+        },
+        "required": ["files"]
       }
     }
   }

@@ -1,13 +1,8 @@
 import { DashboardLayout } from "@/components/custom/layout/DashboardLayout";
 import { MediaTypeCard } from "@/components/custom/dashboard/MediaTypeCard";
-import {
-  ImageIcon,
-  AudioIcon,
-  MusicIcon,
-  VideoIcon,
-} from "@/components/ui/icons";
 import { useNavigate } from "react-router-dom";
 import { useMediaStore } from "@/stores/mediaStore";
+import { ImageIcon, VideoIcon, MusicIcon, AudioLines } from "lucide-react";
 export type MediaType = "image" | "audio" | "music" | "video";
 
 export function DashboardPage() {
@@ -35,7 +30,7 @@ export function DashboardPage() {
               onClick={() => handleMediaTypeSelection("image")}
             />
             <MediaTypeCard
-              icon={<AudioIcon className="w-8 h-8" />}
+              icon={<AudioLines className="w-8 h-8" />}
               title="Audio"
               description="Create realistic audio clips"
               onClick={() => handleMediaTypeSelection("audio")}

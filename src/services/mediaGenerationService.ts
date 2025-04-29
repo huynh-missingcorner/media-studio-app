@@ -67,9 +67,10 @@ export function getApiPayload(
         ...basePayload,
         model: (settings as ImageSettingParams).model,
         aspectRatio: (settings as ImageSettingParams).aspectRatio,
-        numberOfResults: (settings as ImageSettingParams).numberOfResults,
+        sampleCount: (settings as ImageSettingParams).sampleCount,
         allowPeopleAndFaces: (settings as ImageSettingParams)
           .allowPeopleAndFaces,
+        negativePrompt: (settings as ImageSettingParams).negativePrompt,
       };
     case "audio":
       return {
@@ -81,23 +82,26 @@ export function getApiPayload(
         audioEncoding: (settings as AudioSettingParams).audioEncoding,
         audioSampleRate: (settings as AudioSettingParams).audioSampleRate,
         language: (settings as AudioSettingParams).language,
+        negativePrompt: (settings as AudioSettingParams).negativePrompt,
       };
     case "music":
       return {
         ...basePayload,
         model: (settings as MusicSettingParams).model,
         seed: (settings as MusicSettingParams).seed,
+        negativePrompt: (settings as MusicSettingParams).negativePrompt,
       };
     case "video":
       return {
         ...basePayload,
         model: (settings as VideoSettingParams).model,
         aspectRatio: (settings as VideoSettingParams).aspectRatio,
-        numberOfResults: (settings as VideoSettingParams).numberOfResults,
+        sampleCount: (settings as VideoSettingParams).sampleCount,
         durationSeconds: (settings as VideoSettingParams).durationSeconds,
         enhancePrompt: (settings as VideoSettingParams).enhancePrompt,
         seed: (settings as VideoSettingParams).seed,
         personGeneration: (settings as VideoSettingParams).personGeneration,
+        negativePrompt: (settings as VideoSettingParams).negativePrompt,
       };
     default:
       return basePayload;

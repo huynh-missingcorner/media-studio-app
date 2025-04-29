@@ -2,7 +2,7 @@ import { describe, test, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { SignupPage } from "../signup-page";
-import { authService } from "@/services/authService";
+import { authService } from "@/services/api/authService";
 import { BrowserRouter } from "react-router-dom";
 
 // Mock the authService

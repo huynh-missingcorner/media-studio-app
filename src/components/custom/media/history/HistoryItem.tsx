@@ -1,76 +1,22 @@
-import { useState, useRef, useEffect } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { MediaResponseDto, MediaType } from "@/types/media";
-import { Image, Music, Play, Video, Mic } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useRef, useState } from "react";
+import { Mic, Music, Video, Image, Play } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
-import { useMediaHistory } from "@/contexts/MediaHistoryContext";
-
-interface HistoryModalProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-}
-
-export function HistoryModal({ open, onOpenChange }: HistoryModalProps) {
-  const { historyItems, isLoading, fetchHistory, lastFetched } =
-    useMediaHistory();
-
-  // Refresh data when the modal opens if data is stale (older than 1 minute)
-  useEffect(() => {
-    if (open) {
-      const shouldRefresh =
-        !lastFetched || new Date().getTime() - lastFetched.getTime() > 60000; // 1 minute
-
-      if (shouldRefresh) {
-        fetchHistory();
-      }
-    }
-  }, [open, lastFetched, fetchHistory]);
-
-  return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto min-h-[350px]">
-        <DialogHeader>
-          <DialogTitle className="text-2xl font-bold">History</DialogTitle>
-        </DialogHeader>
-
-        {isLoading ? (
-          <div className="flex justify-center items-center h-64">
-            <div className="animate-spin h-8 w-8 border-4 border-primary border-t-transparent rounded-full"></div>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4">
-            {historyItems &&
-              historyItems.map((item) => (
-                <HistoryItem key={item.id} item={item} />
-              ))}
-
-            {!historyItems ||
-              (historyItems.length === 0 && (
-                <div className="col-span-full flex justify-center items-center h-64 text-muted-foreground ">
-                  No history items found
-                </div>
-              ))}
-          </div>
-        )}
-      </DialogContent>
-    </Dialog>
-  );
-}
+import { cn } from "@/lib/utils";
+import { MediaResponseDto, MediaType } from "@/types/media.types";
+import { useHistoryNavigation } from "@/hooks";
 
 interface HistoryItemProps {
   item: MediaResponseDto;
+  onOpenChange: (open: boolean) => void;
 }
 
-function HistoryItem({ item }: HistoryItemProps) {
+export function HistoryItem({ item, onOpenChange }: HistoryItemProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  const { navigateToHistoryItem } = useHistoryNavigation();
 
   const truncatePrompt = (prompt: string) => {
     return prompt.length > 60 ? prompt.slice(0, 60) + "..." : prompt;
@@ -79,7 +25,7 @@ function HistoryItem({ item }: HistoryItemProps) {
   // Get the first result URL or undefined if no results
   const getMediaUrl = () => {
     if (item.results && item.results.length > 0) {
-      return item.results[0].url || item.results[0].resultUrl;
+      return item.results[0].resultUrl;
     }
     return undefined;
   };
@@ -87,7 +33,10 @@ function HistoryItem({ item }: HistoryItemProps) {
   const mediaUrl = getMediaUrl();
   const mediaTypeKey = item.mediaType.toLowerCase();
 
-  const togglePlay = () => {
+  const togglePlay = (e: React.MouseEvent) => {
+    // Stop propagation to prevent parent click handler
+    e.stopPropagation();
+
     if (mediaTypeKey === "video" && videoRef.current) {
       if (isPlaying) {
         videoRef.current.pause();
@@ -132,34 +81,60 @@ function HistoryItem({ item }: HistoryItemProps) {
     }
   };
 
+  const viewMedia = () => {
+    // Use our custom hook to navigate to the generation page
+    navigateToHistoryItem(item.id, mediaTypeKey, item.prompt, () => {
+      // Small delay before closing the modal to ensure state updates properly
+      setTimeout(() => {
+        onOpenChange(false);
+      }, 100);
+    });
+  };
+
   return (
-    <div className="relative rounded-lg overflow-hidden border border-border bg-card transition-all hover:shadow-md">
+    <div
+      className="relative rounded-lg overflow-hidden border border-border bg-card transition-all hover:shadow-md cursor-pointer group"
+      onClick={viewMedia}
+    >
       <div className="absolute top-2 right-2 bg-background/80 backdrop-blur-sm p-1.5 rounded-md z-10">
         {getMediaTypeIcon(item.mediaType)}
       </div>
+
+      {item.results && item.results.length >= 2 && (
+        <div
+          title="Number of results"
+          className="absolute top-11 right-2 bg-primary text-primary-foreground text-xs font-semibold px-1.5 py-0.5 rounded-md z-10 w-[32px] flex items-center justify-center"
+        >
+          x{item.results.length}
+        </div>
+      )}
 
       <div className="aspect-video overflow-hidden flex items-center justify-center bg-muted relative">
         {mediaTypeKey === "image" && mediaUrl ? (
           <img
             src={mediaUrl}
             alt={item.prompt}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover group-hover:scale-110 transition-all duration-300"
           />
         ) : mediaTypeKey === "video" && mediaUrl ? (
           <>
             <video
               ref={videoRef}
               src={mediaUrl}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover group-hover:scale-110 transition-all duration-300"
               onEnded={() => setIsPlaying(false)}
             />
+            {/* For videos, we need a play button that doesn't trigger the parent click */}
             <Button
               size="icon"
               variant="secondary"
-              className="absolute inset-0 m-auto rounded-full bg-background/50 backdrop-blur-sm hover:bg-background/75 w-12 h-12"
+              className={cn(
+                "absolute inset-0 m-auto rounded-full bg-background/50 backdrop-blur-sm hover:bg-background/75 w-12 h-12",
+                isPlaying && "opacity-0"
+              )}
               onClick={togglePlay}
             >
-              <Play className={cn("h-6 w-6", isPlaying && "opacity-0")} />
+              <Play className={cn("h-6 w-6")} />
             </Button>
           </>
         ) : (mediaTypeKey === "music" || mediaTypeKey === "audio") &&
