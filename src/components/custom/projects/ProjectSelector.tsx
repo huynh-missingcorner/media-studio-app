@@ -9,13 +9,36 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Folder } from "lucide-react";
+import { useEffect } from "react";
+import { useMediaHistoryStore } from "@/stores/mediaHistoryStore";
 
 export function ProjectSelector() {
-  const { projects, currentProject, isLoading, setCurrentProject } =
-    useProjectStore();
+  const {
+    projects,
+    currentProject,
+    isLoading,
+    setCurrentProject,
+    fetchProjects,
+  } = useProjectStore();
+  const { setProjectFilter } = useMediaHistoryStore();
+
+  // Load projects when component mounts
+  useEffect(() => {
+    fetchProjects()
+      .then(() => {
+        // When projects are loaded, also update the media history filter if there's a current project
+        if (currentProject?.id) {
+          setProjectFilter(currentProject.id);
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to load projects:", error);
+      });
+  }, [fetchProjects, currentProject?.id, setProjectFilter]);
 
   const handleProjectSelect = (projectId: string) => {
     setCurrentProject(projectId);
+    setProjectFilter(projectId);
   };
 
   return (

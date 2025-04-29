@@ -433,7 +433,10 @@ export function PromptInput() {
       <form onSubmit={handleSubmit} className="flex flex-col space-y-2">
         <div className={cn("relative", hasReferences ? "mb-12" : "")}>
           <Textarea
-            className="min-h-[100px] resize-none pr-12 text-base pl-12"
+            className={cn(
+              "min-h-[100px] resize-none pr-12 text-base",
+              allowAddReference && "pl-12"
+            )}
             placeholder={getPlaceholder()}
             {...form.register("prompt")}
             disabled={isGenerating || isSubmitting}

@@ -58,9 +58,14 @@ export const useProjectStore = create<ProjectState>()(
             lastFetched: Date.now(),
           });
 
-          // If there's a current project, keep it selected if it's still in the list
-          // Otherwise, select the first project if available
-          get().setCurrentProject(currentProjectId || projects[0].id);
+          // Only set current project if we have projects
+          if (projects.length > 0 && !currentProjectId) {
+            const projectIdToSelect = currentProjectId || projects[0].id;
+            if (projectIdToSelect) {
+              get().setCurrentProject(projectIdToSelect);
+            }
+          }
+
           return projects;
         } catch (error) {
           set({
